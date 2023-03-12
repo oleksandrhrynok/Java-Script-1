@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home work COUNTER</title>
+</head>
+<script>
+    function updateCounter() {
+        var count = parseInt(localStorage.getItem("counter"));
+        if (isNaN(count)) {
+            count = 0;
+        }
+        document.getElementById("count").innerHTML = count;
+    }
+    function incrementCounter () {
+        var count = parseInt(localStorage.getItem("counter"));
+        if (isNaN(count)) {
+            count = 0;
+        }
+        count++;
+        localStorage.setItem("counter", count);
+        updateCounter();
+    }
+    function decrementCounter () {
+        var count = parseInt(localStorage.getItem("counter"));
+        if (isNaN(count)) {
+            count = 0;
+        }
+        count--;
+        localStorage.setItem("counter", count);
+        updateCounter();
+    }
+</script>
+<body onload="updateCounter">
+    <h1>Counter</h1>
+    <p>Current count: <span id="count">0</span></p>
+    <button onclick="incrementCounter()">+</button>
+    <button onclick="decrementCounter()">-</button>
+</body>
+</html>
