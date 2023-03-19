@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>list</title>
+</head>
+<body>
+    <input type="text" id="textInput" />
+    <button onclick="addItem()">Add</button>
+    <ul id="list"></ul>
+</body>
+<script>
+    const input = document.getElementById("textInput");
+    const list =document.getElementById("list");
+    const savedList = JSON.parse(localStorage.getItem("list")) || [];
+
+    savedList.forEach(item => {
+        const li = document.createElement("li");
+        li.innerText = item;
+        list.appendChild(li);
+    });
+    function addItem() {
+        const text = input.value;
+        if (text) {
+            const li = document.createElement("li");
+            li.innerText = text;
+            list.appendChild(li);
+            input.value = "";
+            saveList();
+        }
+    }
+    function saveList() {
+        const items = Array.from(list.children).map(li => li.innerText);
+        localStorage.setItem("list", JSON.stringify(items));
+    }
+</script>
+</html>
