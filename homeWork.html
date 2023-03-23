@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Localstorage products</title>
+</head>
+<body>
+    <input placeholder="Product name" type="text" name="" id="product">
+    <br>
+    <br>
+    <input placeholder="Price" type="text" name="" id="price">
+    <br>
+    <br>
+    <input placeholder="Quantity" type="number" id="quantity">
+    <br>
+    <br>
+    Show?
+    <input type="radio" name="show" value="true">Yes
+    <input type="radio" name="show" value="false">No
+    <br>
+    <br>
+    <button onclick="addProduct()">Add</button>
+    <br>
+    <br>
+    <br>
+   Sort by: <select onchange="sortProducts()" name="sorting" id="sort">
+        <option value="name">Name</option>
+        <option value="price">Price</option>
+        <option value="quantity">Quantity</option>        
+    </select>
+    Sort by: <select onchange="sortByPrice()" name="sort_price" id="sort_by_price">
+        <option value="low">Price from lowest to highedt</option>
+        <option value="high">Price from high to low</option>
+    </select>
+    <input placeholder="Search" type="text" id="search">
+    <button onclick="searchProduct()">Search</button>
+    <br>
+    <ul id="list"></ul>
+    <script src="script.js"></script>
+</body>
+</html>
