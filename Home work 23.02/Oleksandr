@@ -1,0 +1,87 @@
+
+//Создать промис который через 2 секунды будет выводить в консоль - "Прошло 2 секунды"
+
+const promise = new Promise((resolve) => {
+  setTimeout(() => {
+    resolve("Прошло 2 секунды");
+  }, 2000);
+});
+
+promise
+  .then((message) => {
+  console.log(message);
+});
+
+//Промис, который при каждом вызове будет выводить в консоль случайное число от 1-10:
+
+const promise1 = new Promise((resolve) => {
+  const getRandomNumber = () => {
+    const number = Math.floor(Math.random() * 10) + 1;
+    resolve(number);
+  };
+  setInterval(getRandomNumber, 1000);
+});
+
+promise1.then((number) => {
+    console.log(`Случайное число: ${number}`);
+  }).catch((error) => {
+  console.error(error);
+});
+
+//Промис, который ресолвится когда все 3 промиса (setTimeout 1 секунда, setTimeout 3 секунды, setTimeout 5 секунд) заресолвились (Promise.all):
+
+const promiseRes1 = new Promise((resolve) => {
+	setTimeout (() => {
+  	resolve("Прошла 1 секунда");
+  }, 1000);
+});
+
+const promiseRes2 = new Promise((resolve) => {
+	setTimeout (() => {
+  	resolve("Прошла 3 секунды");
+  }, 3000);
+});
+
+const promiseRes3 = new Promise((resolve) => {
+	setTimeout (() => {
+  	resolve("Прошла 5 секунд");
+  }, 5000);
+});
+
+Promise
+	.all([promiseRes1, promiseRes2, promiseRes3])	
+  .then((results) => {
+  	console.log(results);
+  })
+  .catch((error) => {
+  console.log(error);
+  });
+  
+  //Создать промис который ресолвится когда один из 3 промисов (setTimeout 1 секунда, setTimeout 3 секунд, setTimeout 5 секунд) заресолвились (Promise.any)
+
+const promiseRes4 = new Promise((resolve) => {
+	setTimeout (() => {
+  	resolve("Прошла 1 секунда");
+  }, 1000);
+});
+
+const promiseRes5 = new Promise((resolve) => {
+	setTimeout (() => {
+  	resolve("Прошла 3 секунды");
+  }, 3000);
+});
+
+const promiseRes6 = new Promise((resolve) => {
+	setTimeout (() => {
+  	resolve("Прошла 5 секунд");
+  }, 5000);
+});
+
+Promise
+	.any([promiseRes3, promiseRes4, promiseRes5])	
+  .then((results) => {
+  	console.log(results);
+  })
+  .catch((error) => {
+  console.log(error);
+  });
