@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    //Написать функцию которая принимает id пользователя, если пользователь с таким id не найден сделать alert данный пользователь не найден, если найден вывести на экран имя пользователя https://jsonplaceholder.typicode.com/users/{id}
+    async function showUserNameById(userId) {
+      fetch(`https://jsonplaceholder.typicode.com/users/${userId}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Данный пользователь не найден');
+            }
+            return response.json();
+        })
+        .then(user => {
+            console.log('Имя пользователя: ', user.name);
+        })
+        .catch(error => {
+            alert(error.massager);
+        });
+    }
+    
+    showUserNameById(5);
+</script>
+<body>
+    
+</body>
+</html>
