@@ -1,42 +1,35 @@
-import logo from "./logo.svg";
-import "./App.css";
 
-const user = [
-  { name: 'Agniezka', age: 32 },
-  { name: 'Marek', age: 71 },
-  { name: 'Zigmund', age: 45 }
+import './App.css';
+
+const fruits = [
+  {title: 'Apple', price: 150, iaAvailable: true},
+  {title: 'Banana', price: 50, isAvailable: true},
+  {title: 'Orange', price: 99, isAvailable: false},
+  {title: 'Grapes', price: 200, isAvailable: true},
+  {title: 'Mange', price: 299, isAvailable: false}
 ]
 
-const product = [
-  {title: 'Apple', cost: 110, availability: 12 },
-  {title: 'Tomato', cost: 90, availability: 10 },
-  {title: 'Orange', cost: 100, availability: 22 },
-]
-
-const rows = user.map(user => {
-  return(<tr><td>{ user.name } is {user.age} years old</td></tr>)
-})
-
-const rows1 = product.map(product => {
-  return (<tr><td>{ product.title }</td><td>{product.cost}</td><td>{product.availability}</td></tr>)
-})
 function App() {
-  
   return (
     <div className="App">
-      <header className="App-header">
-       <table border="1px" bgcolor='black'>
-        {rows}
-       </table>
-       <table border="1px">
-        <tr>
-          <td>Title</td>
-          <td>Cost</td>
-          <td>Availability</td>
-        </tr>
-        {rows1}
-       </table>
-      </header>
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Availability</th>
+          </tr>
+        </thead>
+        <tbody>
+          {fruits.map((fruit, index) => (
+            <tr key={index} style={{backgroundColor: fruit.isAvailable ? "white" : "red"}}> 
+              <td>{fruit.title}</td>
+              <td>{fruit.price}</td>
+              <td>{fruit.iaAvailable ? "Yes" : "Not"}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
